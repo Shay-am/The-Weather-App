@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 2vw 0 0 5vw;
+}
+.temperatura__wrapper {
+  display: flex;
+  padding-top: 5vh;
+  align-items: center;
+}
+.wheatherSymbole {
+  left: 55%;
+  top: 40%;
+  position: fixed;
+
+  width: 100px;
+  height: 100px;
+}
+.temperature {
+  font-size: 3em;
+  font-family: "Poppins", sans-serif;
+}
+.description {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+}
+.description__items {
+  margin-top: 5px;
+  text-align: start;
+}

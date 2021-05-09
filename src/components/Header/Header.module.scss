@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  // padding: 20px 50px 0 0;
+}
+
+.h1 {
+  color: #ff4752;
+  font-family: Righteous, sans-serif;
+  font-size: 2em;
+  padding-left: 200px;
+}
+.time {
+  padding-right: 6vh;
+  font-size: 2em;
+}
