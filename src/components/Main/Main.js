@@ -5,50 +5,44 @@ import { Description } from "./Description/Description";
 import { Input } from "./Input/Input";
 import styles from "./Main.module.scss";
 
-const APIKey = "44ceb40dac2f70d57e392f21fbb9a6ed";
+const API_KEY = "7aabe2761b524f5a889fafd05730ae8e";
 
 export const Main = () => {
   // const [error, setError] = useState(null);
-  const [data2, setData2] = useState([]);
+
   const [text, setText] = useState("");
-  const [data, setData] = useState("");
-  const [wind, setWind] = useState("");
-  const [name, setName] = useState("");
-  const [weather, setWeather] = useState([]);
+  const [data, setData] = useState([]);
 
   const handleInputChange = (e) => setText(e.target.value);
+
   const getData = async () => {
     try {
-      const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=${text}&appid=${APIKey}`
-      );
-      const resJson = await response.json();
-      if (!resJson) {
-        console.log("nie działa");
-      } else {
-        setData2(resJson);
-
-        setData(resJson.main.temp_min);
-        setName(resJson.name);
-        setWeather(resJson.weather);
-        setWind(resJson.wind.speed);
+      if (text === "" || null) {
+        return console.log(`Musisz wpisać miasto`);
       }
+      const response = await fetch(
+        `https://api.weatherbit.io/v2.0/current?lang=pl&city=${text}&key=${API_KEY}&include=minutely`
+      );
+
+      const responseJson = await response.json();
+      if (!responseJson) {
+        return console.log("nie ma takiego miasta");
+      }
+      return setData(responseJson.data);
     } catch (error) {
-      console.error(error);
+      return console.error(error, "nie ma takiego miasta");
     }
   };
-  // useEffect(() => getData());
 
   return (
     <>
       <Input handleInputChange={handleInputChange} getData={getData} />
-
-      <main className={styles.wrapper}>
-        <Date name={name} />
-        {weather.map((items) => (
-          <Description key={items.id} {...items} wind={wind} temp={data} />
-        ))}
-      </main>
+      {data.map((items, index) => (
+        <main className={styles.wrapper}>
+          <Date key={items.city_name} {...items} />
+          <Description key={index} {...items} />
+        </main>
+      ))}
     </>
   );
 };
