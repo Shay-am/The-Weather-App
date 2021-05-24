@@ -22,7 +22,9 @@ export const Description = ({
       ></img>
       <div className={styles.description}>
         <span className={styles.description__items}>{weather.description}</span>
-        <span className={styles.description__items}>{wind_cdir_full}</span>
+        <span className={styles.description__items}>
+          Kierunek wiatru: {wind_cdir_full}
+        </span>
         <span className={styles.description__items}>
           wiatr: {converterWind} km/h
         </span>

@@ -7,3 +7,10 @@
   position: fixed;
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  .wrapper {
+    left: 3%;
+    position: fixed;
+  }
+}
